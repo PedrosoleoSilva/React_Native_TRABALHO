@@ -13,9 +13,9 @@ const Forms = () => {
     
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={style.cards}>
             <StatusBar/>
-                <View style={style.cardText}>
+                <View >
                 <TextInput style={style.text}
                     onChangeText={onChangeEmail}
                      value={email}
@@ -53,12 +53,20 @@ const style = StyleSheet.create({
     },
     text: {
         textAlign: 'center',
+        
     },
     button: {
         alignItems: 'center',
         backgroundColor: 'aqua',
         padding: 10,
-      },
+        marginTop: 12
+          },
+      cards: {
+        backgroundColor: '#a3f3f7',
+        borderRadius: 15,
+        margin: 8,
+        padding: 20,
+      }
 })
 
 export default Forms;
