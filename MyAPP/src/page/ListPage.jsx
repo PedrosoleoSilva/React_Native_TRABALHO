@@ -1,56 +1,62 @@
-import { FlatList, SafeAreaView, StatusBar, Text, View, StyleSheet } from "react-native";
+import axios from "axios";
+import React, { useState, useEffect, useCallback } from "react";
+import { FlatList, SafeAreaView, StatusBar, Text, View, StyleSheet, Image } from "react-native";
 
-const pokemonData = [
-    {
-        name: 'Pikachu',
-        type: 'Elétrico',
-    },
-    {
-        name: 'Charmander',
-        type: 'Fogo',
-    },
-    {
-        name: 'Psyduck',
-        type: 'Psíquico',
+const Home = () => {
+  const [pokeData, setPokeData] = useState([]);
+
+  const fetchUserDataPokemon = useCallback(async () => {
+    try {
+      const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=50&offset=0');
+      setPokeData(response.data.results);
+    } catch (error) {
+      console.error(error);
     }
-]
+  }, []);
 
-const PokemonItem = ({pokemon}) =>{
+  useEffect(() => {
+    fetchUserDataPokemon();
+  }, []);
 
-    const {name, type} = pokemon
-    return(
-        <View style ={style.pokemonCard}>
-            <Text style={style.text}>Pokemon: {pokemon.name}</Text>
-            <Text style={style.text}>Tipo: {type}</Text>
-        </View>
-    )
-}
+  const Pokemon = ({ item }) => {
+    const { name, url } = item;
+    const pokemonId = url.split("/")[6];
+    const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
 
-const ListPage = () => {
     return (
-        <SafeAreaView>
-            <StatusBar/>
-                <FlatList
-                    data={pokemonData}
-                    renderItem={({item}) => <PokemonItem  pokemon ={item}/>}
-                />
-           
-        </SafeAreaView>
+      <View style={styles.card}>
+        <Text>NAME: {name}</Text>
+        <Image source={{ uri: imageUrl }} style={styles.image} />
+      </View>
     );
-}
+  };
 
-const style = StyleSheet.create({
-    pokemonCard: {
-        padding: 14,
-        backgroundColor: '#fa3007',
-        margin: 8,
-        borderRadius: 14,
-    },
-    text: {
-        color: '#ffff',
-        fontSize: 24,
+  return (
+    <SafeAreaView>
+      <StatusBar />
+      <FlatList
+        data={pokeData}
+        renderItem={({ item }) => <Pokemon item={item} />}
+        keyExtractor={(item) => item.name}
+      />
+      <Text>HELLO</Text>
+    </SafeAreaView>
+  );
+};
 
-    }
-})
+const styles = StyleSheet.create({
+  card: {
+    width: 200,
+    height: 300,
+    marginRight: 10,
+    padding: 20,
+    margin: 8,
+    backgroundColor: "aqua",
+  },
+  image: {
+    width: 100,
+    height: 100,
+  },
+});
 
-export default ListPage;
+export default Home;
