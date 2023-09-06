@@ -9,7 +9,7 @@ import Informs from './src/page/Informs';
 
 export default function App() {
   return (
-    <Informs/>
+    <ListPage/>
   );
 }
 

@@ -26,6 +26,7 @@ const Home = () => {
         const {name, url} = itens
         const pokemonId = url.split("/")[6];
         const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+        //const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1${pokemonId}.svg`
         return (
             <View style={style.card}>
             <Text style={style.texto}> {name}</Text>
