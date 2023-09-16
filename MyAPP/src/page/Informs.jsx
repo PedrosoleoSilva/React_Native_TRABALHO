@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { SafeAreaView, StatusBar, View, StyleSheet, Text, Image, TextInput, Button } from "react-native";
+import { SafeAreaView, StatusBar, View, StyleSheet, Text, Image, TextInput, Button, TouchableOpacity } from "react-native";
 
 const Informs = () => {
     const [inputName, setInputName] = useState()
     const [inputSenha, setInputSenha] = useState()
 
     const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${4}.png`;
-
+    <Image source={require('../assets/poke_1.gif')} style={style.gif} />
     return (
         <SafeAreaView>
             <StatusBar/>
             <View style={style.card}>
-                <Image source={{ uri: imageUrl }} style={style.image} />
+                <Image source={require('../assets/poke_77.gif')} style={style.gif} />
                 <Text style={style.testo} >R$: 999.99</Text>
                 <Text style={style.testo}>Charmander</Text>
                 <View style={style.inputName}>
@@ -25,6 +25,10 @@ const Informs = () => {
                         value={inputSenha}
                         placeholder="DIGITE A SENHA AQUI"
                     />
+
+            <TouchableOpacity  style={style.button} >
+                <Text>Enviar</Text>
+            </TouchableOpacity>
                 </View>
     
             </View>
@@ -66,7 +70,18 @@ const style = StyleSheet.create({
         textAlign: 'center',
         textTransform: 'uppercase',
         fontWeight: 'bold',
-      }
+      },
+      button: {
+        alignItems: 'center',
+        backgroundColor: 'aqua',
+        padding: 10,
+        marginTop: 12,
+      },
+      gif: {
+        width: 160,
+        height: 300,
+        marginLeft: 60,
+      },
 })
 
 export default Informs;

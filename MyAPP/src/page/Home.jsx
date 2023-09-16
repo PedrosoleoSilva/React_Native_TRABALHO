@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,  
     paddingVertical: 30,
     paddingHorizontal: 65,
-    marginVertical: 10,
+    marginVertical: 10, 
   },
 
   elevation: {
