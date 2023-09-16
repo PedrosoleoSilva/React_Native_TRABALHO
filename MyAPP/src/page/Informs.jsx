@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SafeAreaView, StatusBar, View, StyleSheet, Text, Image, TextInput } from "react-native";
+import { SafeAreaView, StatusBar, View, StyleSheet, Text, Image, TextInput, Button } from "react-native";
 
 const Informs = () => {
     const [inputName, setInputName] = useState()
@@ -11,7 +11,6 @@ const Informs = () => {
         <SafeAreaView>
             <StatusBar/>
             <View style={style.card}>
-                <View>
                 <Image source={{ uri: imageUrl }} style={style.image} />
                 <Text style={style.testo} >R$: 999.99</Text>
                 <Text style={style.testo}>Charmander</Text>
@@ -27,8 +26,7 @@ const Informs = () => {
                         placeholder="DIGITE A SENHA AQUI"
                     />
                 </View>
-                
-                </View>
+    
             </View>
         </SafeAreaView>
     );

@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import {Button, SafeAreaView, StatusBar, View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
 
-const Forms = () => {
+
+
+const Forms = ({navigation}) => {
     const [email, setEmail] = useState();
     const [number, setNumber] =useState('');
     const [info, setInfo] = useState(false);
@@ -33,9 +35,9 @@ const Forms = () => {
     
 
     return (
-        <SafeAreaView style={style.cards}>
+        <SafeAreaView>
             <StatusBar/>
-                <View >
+                <View  style={style.cards}>
                 <TextInput style={style.text}
                     onChangeText={onChangeEmail}
                      value={email}
@@ -52,10 +54,9 @@ const Forms = () => {
                   {!inputValidSenha ? <Text>Senha deve conter pelo menos 8 caracteres</Text> : <></>}
 
             
-                    <TouchableOpacity onPress={onPressButton} style={style.button}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Home')} style={style.button}>
                         <Text>Enviar</Text>
                     </TouchableOpacity>
-    
              </View>
         </SafeAreaView>
     );
@@ -80,10 +81,18 @@ const style = StyleSheet.create({
         marginTop: 12
           },
       cards: {
-        backgroundColor: '#a3f3f7',
-        borderRadius: 15,
+        backgroundColor: '#fff',
+        borderRadius: 16,
         margin: 8,
-        padding: 20,
+        padding: 2,
+        shadowColor: '#fff', 
+        shadowOffset: {
+            width: 0,
+            height: 11,
+        },
+        shadowOpacity: 0.55,
+        shadowRadius: 14.78,
+        elevation: 22,
       }
 })
 

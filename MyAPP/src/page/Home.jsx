@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useState, useEffect, useCallback } from "react";
-import { FlatList, SafeAreaView, StatusBar, Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { FlatList, SafeAreaView, StatusBar, Text, View, StyleSheet, Image,Button, TouchableOpacity } from "react-native";
 
-const Home = ({ navigation }) => {
+
+const Home = ({ navigation}) => {
   const [pokeData, setPokeData] = useState([])
   const [page, setPage] = useState(0)
+
+  
 
   const fetchUserDataPokemon = useCallback(async () => {
     try {
@@ -30,7 +33,7 @@ const Home = ({ navigation }) => {
     }
 
     return (
-      <TouchableOpacity style={styles.card} onPress={handleItemClick}>
+      <TouchableOpacity style={[styles.card, styles.elevation]} onPress={handleItemClick}>
         <Text style={styles.texto}>{name}</Text>
         <Image source={{ uri: imageUrl }} style={styles.image} />
         <Text style={styles.url}>{url}</Text>
@@ -47,6 +50,11 @@ const Home = ({ navigation }) => {
       <StatusBar />
       <View>
         <Text style={styles.cabecalho}>POKEMONS</Text>
+        <Button
+            title='Extra'
+             onPress={() => navigation.navigate('Informs')}
+                    
+        />
       </View>
       <FlatList
         data={pokeData}
@@ -55,7 +63,11 @@ const Home = ({ navigation }) => {
         onEndReached={handleLoadMore}
         onEndReachedThreshold={0.1}
       />
-      <Text>HELLO</Text>
+        
+        <Button
+                    title='Item Extra'
+                    onPress={() => navigation.navigate('ItemDetails')}
+         />
     </SafeAreaView>
   );
 };
@@ -64,11 +76,18 @@ const styles = StyleSheet.create({
   card: {
     width: 400,
     height: 280,
-    padding: 10,
     margin: 8,
-    backgroundColor: "aqua",
-    marginLeft: 30,
-    borderRadius: 20,
+    backgroundColor: "white",
+    marginLeft: 45,
+    borderRadius: 18,  
+    paddingVertical: 30,
+    paddingHorizontal: 65,
+    marginVertical: 10,
+  },
+
+  elevation: {
+    elevation: 20,
+    shadowColor: '#52006A',
   },
   image: {
     width: 240,
